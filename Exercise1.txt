@@ -1,0 +1,13 @@
+In BIT05 => Exercises_Lecture6 aanmaken
+$ mkdir Exercises_Lecture6
+In map gaan
+$ cd Exercises_Lecture6
+$ git init
+Github => create repository: Exercises_Lecture6
+$ git remote add origin https://github.com/laurencededrie/Exercises_Lecture6.git
+$ touch Exercise1.txt
+$ git add Exercise1.txt
+$ git status
+$ git commit –m “1”	=> commit changes
+$ git push –u origin master
+
