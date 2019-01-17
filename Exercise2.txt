@@ -1,0 +1,23 @@
+Normalize following data to BCNF.
+Describe every step of the process and save the results for every normalization step  in a file called exercise2.txt.
+Add your results file to the repository from exercise 1. Choose a fitting commit  message.
+
+
+VERSIE MENEER:
+UNF   DB(staffNo, dentistName, patientNo, patientName, appointment, surgeryNo)
+
+1NF   DB(StaffNo, dentistName, patientNo, patientName, apptdate, appttime, surgeryNo)
+      keys(staffNo, apptdata, appttime)
+
+2NF   Appointment(StaffNo, apptdate, appttime, patientNo, patientName)
+      Surgery(staffNo, apptdate, surgeryNo)
+      Dentist(staffNo, dentistName)
+      keys(staffNo, apptdate, appttime - staffNo, apptdate - staffNo)
+
+3NF   Surgery(staffNo, apptdate, surgeryNo)
+      Dentist(staffNo, dentistName)
+      Appointment(StaffNo, apptdate, appttime, patientNo)
+      Patient(patientNo, patientName)
+      keys(staffNo, apptdate - staffNo - staffNo, apptdate, appttime - patientNo)
+
+BCNF  = 3NF
