@@ -1,0 +1,103 @@
+1) List the names and addresses of all guests in London, alphabetically ordered by name.
+
+SELECT guestname, guestaddress FROM guest WHERE guestaddress LIKE "%London%" ORDER BY guestname DESC;
++--------------+--------------------+
+| guestname    | guestaddress       |
++--------------+--------------------+
+| Mike Ritchie | 18 Tain St, London |
+| John Kay     | 56 High St, London |
++--------------+--------------------+
+
+
+2) List all double or family rooms with a price below £40.00 per night, cheapest first.
+
+SELECT roomno, type, price FROM room WHERE type != "single" AND price < 40.00 ORDER BY price ASC;
++--------+--------+-------+
+| roomno | type   | price |
++--------+--------+-------+
+|    801 | double | 15.00 |
+|    601 | double | 29.00 |
+|   1001 | double | 30.00 |
+|   1101 | family | 35.00 |
+|    701 | family | 39.00 |
++--------+--------+-------+
+
+
+3) List the bookings for which no date_to has been specified.
+
+SELECT * FROM booking WHERE dateto is NULL;
++---------+---------+------------+--------+--------+
+| hotelno | guestno | datefrom   | dateto | roomno |
++---------+---------+------------+--------+--------+
+| ch01    |   10006 | 2019-04-21 | NULL   |   1101 |
+| dc01    |   10003 | 2019-05-20 | NULL   |   1001 |
+| fb01    |   10001 | 2019-05-01 | NULL   |    701 |
++---------+---------+------------+--------+--------+
+
+
+4) What is the average price of a room?
+
+SELECT avg(price) as average_price FROM room;
++---------------+
+| average_price |
++---------------+
+|     35.748333 |
++---------------+
+
+
+5) What is the total revenue per night from all double rooms?
+
+SELECT type, sum(price) FROM room WHERE type = "double" GROUP BY type;
++--------+------------+
+| type   | sum(price) |
++--------+------------+
+| double |     160.00 |
++--------+------------+
+
+
+6) How many different guests have made bookings for August?
+
+SELECT * FROM booking WHERE YEAR(dateto)-YEAR(datefrom) >= 1 OR MONTH(dateto) = 8 OR MONTH(datefrom) = 8 OR (MONTH(datefrom) < 8 AND MONTH(dateto) > 8);
++---------+---------+------------+------------+--------+
+| hotelno | guestno | datefrom   | dateto     | roomno |
++---------+---------+------------+------------+--------+
+| fb02    |   10003 | 2019-04-05 | 2020-04-04 |   1001 |
+| fb02    |   10005 | 2019-05-12 | 2030-05-04 |   1101 |
++---------+---------+------------+------------+--------+
+
+SELECT * FROM booking WHERE YEAR(dateto)-YEAR(datefrom) >= 1 OR (MONTH(datefrom) <= 8 AND MONTH(dateto) >= 8);
++---------+---------+------------+------------+--------+
+| hotelno | guestno | datefrom   | dateto     | roomno |
++---------+---------+------------+------------+--------+
+| fb02    |   10003 | 2019-04-05 | 2020-04-04 |   1001 |
+| fb02    |   10005 | 2019-05-12 | 2030-05-04 |   1101 |
++---------+---------+------------+------------+--------+
+
+7) List the price and type of all rooms at the The Tower Hotel.
+
+
+8) List all guests currently staying at the The Tower Hotel.
+
+
+9) List the details of all rooms at the The Tower Hotel, including the name of the guest  staying in the room, if the room is occupied.
+
+
+10) What is the total income from bookings for the The Tower Hotel today?
+
+
+11) List the rooms that are currently unoccupied at the The Tower Hotel.
+
+
+12) What is the lost income from unoccupied rooms at the The Tower Hotel?
+
+
+13) List the number of rooms in each hotel in London.
+
+
+14) What is the most commonly booked room type for each hotel in London?
+
+
+15) Update the price of all rooms by 5%.
+
+
+
